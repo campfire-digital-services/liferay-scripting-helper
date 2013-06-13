@@ -14,6 +14,8 @@ Liferay Scripting Helper is an improved interface to scripting in Liferay. It fe
 
 The latest releases are available from [SourceForge](http://sourceforge.net/projects/permeance-apps/files/liferay-scripting-helper/ "Liferay Scripting Helper").
 
+Liferay Marketplace submission pending.
+
 
 ## Usage
 
@@ -52,9 +54,11 @@ eg.
 Deploy "liferay-scripting-helper-portlet-1.0.0.0.war" to "LIFERAY_HOME/deploy" folder.
 
 
-## Marketplace Support
+## Plugin Security
 
-This app will not be released as a Marketplace application due to Plugin Security issues. While we have provided a list of plugin security entries to run the basic scripting helper, the administrator would need to add additional entries for any script functions/services that might be called. As such, the scripting helper is not really helpful unless it can be installed without plugin security.
+This app will be released as a Marketplace application without Plugin Security enabled. 
+
+While we have provided a list of plugin security entries to run the basic scripting helper, the administrator would need to add additional entries for any script functions/services that might be called. As such, the scripting helper is not really helpful unless it can be installed without plugin security.
 
 
 ## Support for Liferay 6.1 GA 1 (6.1.0, 6.1.10)
