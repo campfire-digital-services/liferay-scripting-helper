@@ -14,7 +14,7 @@ Liferay Scripting Helper is an improved interface to scripting in Liferay. It fe
 
 The latest releases are available from [SourceForge](http://sourceforge.net/projects/permeance-apps/files/liferay-scripting-helper/ "Liferay Scripting Helper").
 
-Liferay Marketplace submission pending.
+It is also available from the [Liferay Marketplace](http://www.liferay.com/marketplace/-/mp/application/25618082 "Liferay Scripting Helper").
 
 
 ## Usage
