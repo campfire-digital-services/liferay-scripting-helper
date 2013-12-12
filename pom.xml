@@ -12,11 +12,11 @@
 	
 	<groupId>au.com.permeance.utility</groupId>
 	<artifactId>liferay-scripting-helper-portlet</artifactId>
-	<version>LP6.1-1.0.1.1</version>
+	<version>LP6.2-1.0.1.1</version>
 	<packaging>war</packaging>
 
 	<properties>
-		<liferay.version>6.1.1</liferay.version>
+		<liferay.version>6.2.0-GA1</liferay.version>
 	</properties>
 
 	<dependencies>

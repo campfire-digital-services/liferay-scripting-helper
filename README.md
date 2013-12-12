@@ -8,6 +8,8 @@ Liferay Scripting Helper is an improved interface to scripting in Liferay. It fe
 
 * Liferay Portal 6.1 CE GA2, GA3 (6.1.1+)
 * Liferay Portal 6.1 EE GA2, GA3 (6.1.20+)
+* Liferay Portal 6.2 CE GA1 (6.2.0+)
+* Liferay Portal 6.2 EE GA1 (6.2.10+)
 
 
 ## Downloads
@@ -19,10 +21,13 @@ It is also available from the [Liferay Marketplace](http://www.liferay.com/marke
 
 ## Usage
 
-Administrators will see a "Scripting Helper" portlet in the Server area of the Control Panel.
+Administrators will see a "Scripting Helper" portlet in the Server area of the Control Panel in 6.1.
+The portlet appears in the Apps section of the Control Panel in 6.2.
 Other users can also be assigned permissions to see the Scripting Helper Portlet.
 
 ![Scripting Helper Portlet](/docs/images/scripting-helper-1.png "Scripting Helper Portlet")
+
+![Scripting Helper Portlet](/docs/images/scripting-helper-2.png "Scripting Helper Portlet")
 
 The user can run the script, see any script output or script error traces, save the script, save/load a script, export the saved scripts as a zip file, and import it into another Liferay installation.
 
@@ -51,7 +56,7 @@ NOTE: You will require JDK 1.6+ and Maven 3.
 
 eg.
 
-Deploy "liferay-scripting-helper-portlet-1.0.0.0.war" to "LIFERAY_HOME/deploy" folder.
+Deploy "liferay-scripting-helper-portlet-LPX.X-X.X.X.X.war" to "LIFERAY_HOME/deploy" folder.
 
 
 ## Plugin Security
@@ -63,7 +68,7 @@ While we have provided a list of plugin security entries to run the basic script
 
 ## Support for Liferay 6.1 GA 1 (6.1.0, 6.1.10)
 
-The source code supports Liferay 6.1 GA1 but needs to be recompiled with those libraries, due to a method signature change in ScriptingUtil. Check out the source from the GitHub project, and in the pom.xml, change liferay.version to 6.1.0, and rebuild the project. The resultant WAR can be deployed to a Liferay 6.1 GA1 instance.
+The source code supports Liferay 6.1 GA1 but needs to be recompiled with those libraries, due to a method signature change in ScriptingUtil. Check out the 6.1.x source from the GitHub project, and in the pom.xml, change liferay.version to 6.1.0, and rebuild the project. The resultant WAR can be deployed to a Liferay 6.1 GA1 instance.
 
 
 ## License

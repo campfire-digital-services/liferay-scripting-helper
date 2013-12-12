@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.scripting.ScriptingHelperUtil;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -68,7 +69,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
     @Override
     public void doView(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
         try {
-            checkPermissions(renderRequest);
+            sCheckPermissions(renderRequest);
 
             List<String> savedscripts = new ArrayList<String>();
             PortletPreferences prefs = renderRequest.getPreferences();
@@ -113,7 +114,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
         ZipOutputStream zout = null;
         OutputStream out = null;
         try {
-            checkPermissions(resourceRequest);
+            sCheckPermissions(resourceRequest);
             _log.info("Export All As Zip");
 
             Map<String, String> savedscripts = new TreeMap<String, String>();
@@ -160,7 +161,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 
     public void execute(ActionRequest actionRequest, ActionResponse actionResponse) {
         try {
-            checkPermissions(actionRequest);
+            sCheckPermissions(actionRequest);
 
             String portletId = "_" + PortalUtil.getPortletId(actionRequest) + "_";
 
@@ -199,7 +200,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 
             if ("execute".equals(cmd)) {
 
-                Map<String, Object> portletObjects = ScriptingUtil.getPortletObjects(getPortletConfig(), getPortletContext(),
+                Map<String, Object> portletObjects = ScriptingHelperUtil.getPortletObjects(getPortletConfig(), getPortletContext(),
                         actionRequest, actionResponse);
 
                 UnsyncByteArrayOutputStream unsyncByteArrayOutputStream = new UnsyncByteArrayOutputStream();
@@ -209,7 +210,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
                 portletObjects.put("out", unsyncPrintWriter);
 
                 _log.info("Executing script");
-                ScriptingUtil.exec(null, portletObjects, language, script);
+                ScriptingUtil.exec(null, portletObjects, language, script, StringPool.EMPTY_ARRAY);
                 unsyncPrintWriter.flush();
                 actionResponse.setRenderParameter("script_output", unsyncByteArrayOutputStream.toString());
             } else if ("save".equals(cmd)) {
@@ -373,7 +374,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
         }
     }
 
-    public static void checkPermissions(PortletRequest request) throws Exception {
+    public static void sCheckPermissions(PortletRequest request) throws Exception {
         ThemeDisplay themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
         PermissionChecker permissionChecker = themeDisplay.getPermissionChecker();
 
