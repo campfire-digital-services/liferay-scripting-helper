@@ -16,7 +16,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<liferay.version>6.2.0-GA1</liferay.version>
+		<liferay.version>6.2.1</liferay.version>
 	</properties>
 
 	<dependencies>
