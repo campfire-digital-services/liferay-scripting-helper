@@ -23,7 +23,7 @@ not, see <http://www.gnu.org/licenses/>.
 	<portlet>
 		<portlet-name>scripting-helper</portlet-name>
 		<display-name>Scripting Helper</display-name>
-		<portlet-class>com.permeance.utility.scriptinghelper.portlets.ScriptingHelperPortlet</portlet-class>
+		<portlet-class>au.com.permeance.utility.scriptinghelper.portlets.ScriptingHelperPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>

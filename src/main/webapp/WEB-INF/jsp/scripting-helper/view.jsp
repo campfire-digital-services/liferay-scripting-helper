@@ -28,7 +28,7 @@
 <%
     String language = ParamUtil.getString(renderRequest, "language", "javascript");
     String script = ParamUtil.getString(renderRequest, "script", "");
-    if(script.length() == 0) script = "// ### Javascript Sample ###\n\nnumber = Packages.com.liferay.portal.service.UserLocalServiceUtil.getUsersCount();\n\nout.println(number);";
+    if(script.length() == 0) script = "// ### Groovy Sample ###\n\nnumber = com.liferay.portal.kernel.service.UserLocalServiceUtil.getUsersCount();\n\nout.println(number);";
 	String scriptOutput = ParamUtil.getString(renderRequest, "script_output", "");
 	String scriptError = ParamUtil.getString(renderRequest, "script_trace", "");
 	
