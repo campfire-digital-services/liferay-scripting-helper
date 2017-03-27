@@ -1,6 +1,6 @@
 <%-- 
 /**
- * Copyright (c) 2012 Permeance Technologies. All rights reserved.
+ * Copyright (C) 2017 Permeance Technologies
  * 
  * This file is part of Scripting Helper.
  * 
