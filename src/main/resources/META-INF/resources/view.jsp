@@ -26,7 +26,7 @@
 <portlet:resourceURL var="resourceUrl" />
 
 <%
-    String language = ParamUtil.getString(renderRequest, "language", "javascript");
+    String language = ParamUtil.getString(renderRequest, "language", "groovy");
     String script = ParamUtil.getString(renderRequest, "script", "");
     if(script.length() == 0) script = "// ### Groovy Sample ###\n\nnumber = com.liferay.portal.kernel.service.UserLocalServiceUtil.getUsersCount();\n\nout.println(number);";
 	String scriptOutput = ParamUtil.getString(renderRequest, "script_output", "");
