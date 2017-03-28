@@ -70,15 +70,13 @@ import com.liferay.portal.kernel.util.WebKeys;
 @Component(
 		immediate = true,
 		property = {
-//			"com.liferay.portlet.display-category=" + NAME_HIDDEN,
+			"com.liferay.portlet.css-class-wrapper=portlet-controlpanel",
+			"com.liferay.portlet.display-category=" + NAME_HIDDEN,
 			"com.liferay.portlet.icon=/scripting-helper.png",
-//			"com.liferay.portlet.control-panel-entry-category=server",
-//			"com.liferay.portlet.control-panel-entry-weight=1.2",
 			"com.liferay.portlet.preferences-company-wide=true",
 			"com.liferay.portlet.instanceable=true",
 			"com.liferay.portlet.instanceable=false",
-//			"com.liferay.portlet.render-weight=50",
-//			"com.liferay.portlet.system=true",
+			"com.liferay.portlet.render-weight=50",
 			"com.liferay.portlet.header-portlet-css=/codemirror/lib/codemirror.css",
 			"com.liferay.portlet.header-portlet-css=/codemirror/theme/ambiance.css",
 			"com.liferay.portlet.header-portlet-css=/codemirror/theme/blackboard.css",
@@ -93,18 +91,22 @@ import com.liferay.portal.kernel.util.WebKeys;
 			"com.liferay.portlet.header-portlet-css=/codemirror/theme/vibrant-ink.css",
 			"com.liferay.portlet.header-portlet-css=/codemirror/theme/xq-dark.css",
 			"com.liferay.portlet.header-portlet-javascript=/codemirror/codemirror-2.3.5-compressed.js",
+			"javax.portlet.name=" + ScriptingHelperPortlet.PORTLET_ID,
 			"javax.portlet.display-name=Scripting Helper",
 			"javax.portlet.expiration-cache=0",
 			"javax.portlet.init-param.template-path=/",
 			"javax.portlet.init-param.view-template=/view.jsp",
 			"javax.portlet.resource-bundle=content.Language",
 			"javax.portlet.portlet-mode=text/html",
-			"javax.portlet.security-role-ref=power-user,user"
+			"javax.portlet.security-role-ref=administrator"
 		},
 		service = Portlet.class
 	)
 public class ScriptingHelperPortlet extends MVCPortlet {
-	public static Log _log = LogFactoryUtil.getLog(ScriptingHelperPortlet.class);
+	
+	static final String PORTLET_ID = "au_com_permeance_utility_scriptinghelper_portlets_ScriptingHelperPortlet";
+
+	private static Log _log = LogFactoryUtil.getLog(ScriptingHelperPortlet.class);
 
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
