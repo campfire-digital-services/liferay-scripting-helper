@@ -109,6 +109,12 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 	private static Log _log = LogFactoryUtil.getLog(ScriptingHelperPortlet.class);
 
 	@Override
+	public void init() throws PortletException{
+		super.init();
+		super.copyRequestParameters = false;
+	}
+	
+	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
 		try {
