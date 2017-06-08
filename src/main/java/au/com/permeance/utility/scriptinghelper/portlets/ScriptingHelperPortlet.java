@@ -15,6 +15,8 @@
 
 package au.com.permeance.utility.scriptinghelper.portlets;
 
+import static com.liferay.portal.kernel.model.PortletCategoryConstants.NAME_HIDDEN;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,6 +36,7 @@ import java.util.zip.ZipOutputStream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.Portlet;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
@@ -45,11 +48,13 @@ import javax.portlet.ResourceResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.portlet.PortletFileUpload;
+import org.osgi.service.component.annotations.Component;
 
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.scripting.ScriptingHelperUtil;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -62,11 +67,53 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnsyncPrintWriterPool;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-
+@Component(
+		immediate = true,
+		property = {
+			"com.liferay.portlet.css-class-wrapper=portlet-controlpanel",
+			"com.liferay.portlet.display-category=" + NAME_HIDDEN,
+			"com.liferay.portlet.icon=/scripting-helper.png",
+			"com.liferay.portlet.preferences-company-wide=true",
+			"com.liferay.portlet.instanceable=true",
+			"com.liferay.portlet.instanceable=false",
+			"com.liferay.portlet.render-weight=50",
+			"com.liferay.portlet.header-portlet-css=/codemirror/lib/codemirror.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/ambiance.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/blackboard.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/cobalt.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/eclipse.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/elegant.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/erlang-dark.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/lesser-dark.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/neat.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/night.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/rubyblue.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/vibrant-ink.css",
+			"com.liferay.portlet.header-portlet-css=/codemirror/theme/xq-dark.css",
+			"com.liferay.portlet.header-portlet-javascript=/codemirror/codemirror-2.3.5-compressed.js",
+			"javax.portlet.name=" + ScriptingHelperPortlet.PORTLET_ID,
+			"javax.portlet.display-name=Scripting Helper",
+			"javax.portlet.expiration-cache=0",
+			"javax.portlet.init-param.template-path=/",
+			"javax.portlet.init-param.view-template=/view.jsp",
+			"javax.portlet.resource-bundle=content.Language",
+			"javax.portlet.portlet-mode=text/html",
+			"javax.portlet.security-role-ref=administrator"
+		},
+		service = Portlet.class
+	)
 public class ScriptingHelperPortlet extends MVCPortlet {
-	public static Log _log = LogFactoryUtil.getLog(ScriptingHelperPortlet.class);
+	
+	static final String PORTLET_ID = "au_com_permeance_utility_scriptinghelper_portlets_ScriptingHelperPortlet";
 
+	private static Log _log = LogFactoryUtil.getLog(ScriptingHelperPortlet.class);
+
+	@Override
+	public void init() throws PortletException{
+		super.init();
+		super.copyRequestParameters = false;
+	}
+	
 	@Override
 	public void doView(RenderRequest renderRequest, RenderResponse renderResponse)
 			throws IOException, PortletException {
@@ -85,10 +132,10 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 			}
 			renderRequest.setAttribute("savedscripts", savedscripts);
 
-			include("/WEB-INF/jsp/scripting-helper/view.jsp", renderRequest, renderResponse);
+			include("/view.jsp", renderRequest, renderResponse);
 		} catch (Exception e) {
 			_log.warn(e);
-			include("/WEB-INF/jsp/scripting-helper/error.jsp", renderRequest, renderResponse);
+			include("/error.jsp", renderRequest, renderResponse);
 		}
 	}
 
@@ -212,7 +259,7 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 				portletObjects.put("out", unsyncPrintWriter);
 
 				_log.info("Executing script");
-				ScriptingUtil.exec(null, portletObjects, language, script, StringPool.EMPTY_ARRAY);
+				ScriptingUtil.exec(null, portletObjects, language, script);
 				unsyncPrintWriter.flush();
 				actionResponse.setRenderParameter("script_output", unsyncByteArrayOutputStream.toString());
 			} else if ("save".equals(cmd)) {

@@ -1,0 +1,7 @@
+Bundle-Name: Liferay Scripting Helper
+Bundle-SymbolicName: au.com.permeance.liferay.scripting
+
+-plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
+-plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
+
+-jsp: *.jsp,*.jspf
