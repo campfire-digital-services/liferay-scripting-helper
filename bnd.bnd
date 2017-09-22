@@ -1,5 +1,6 @@
 Bundle-Name: Liferay Scripting Helper
 Bundle-SymbolicName: au.com.permeance.liferay.scripting
+DynamicImport-Package: *
 
 -plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
 -plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
