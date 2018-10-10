@@ -50,6 +50,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.portlet.PortletFileUpload;
 import org.osgi.service.component.annotations.Component;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.log.Log;
@@ -63,7 +64,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnsyncPrintWriterPool;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -177,18 +177,22 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 				}
 			}
 
+			// must be set before calling getPortletOutputStream()
+			//  to override with a new content type;
+			resourceResponse.setContentType("application/zip");
+			resourceResponse.addProperty(HttpHeaders.CACHE_CONTROL, "max-age=3600, must-revalidate");
+
 			String filename = "liferay-scripts.zip";
+			resourceResponse.addProperty(HttpHeaders.CONTENT_DISPOSITION, "filename=" + filename);
 
 			out = resourceResponse.getPortletOutputStream();
 			zout = new ZipOutputStream(out);
+
 			for (String key : savedscripts.keySet()) {
 				String value = savedscripts.get(key);
 				zout.putNextEntry(new ZipEntry(key));
 				zout.write(value.getBytes("utf-8"));
 			}
-			resourceResponse.setContentType("application/zip");
-			resourceResponse.addProperty(HttpHeaders.CACHE_CONTROL, "max-age=3600, must-revalidate");
-			resourceResponse.addProperty(HttpHeaders.CONTENT_DISPOSITION, "filename=" + filename);
 
 		} catch (Exception e) {
 			_log.error(e);
