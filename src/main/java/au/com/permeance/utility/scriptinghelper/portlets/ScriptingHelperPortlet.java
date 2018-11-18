@@ -177,8 +177,8 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 				}
 			}
 
-			// must be set before calling getPortletOutputStream()
-			//  to override with a new content type;
+			// ContentType must be set before calling getPortletOutputStream()
+			//  to override with a new type;
 			resourceResponse.setContentType("application/zip");
 			resourceResponse.addProperty(HttpHeaders.CACHE_CONTROL, "max-age=3600, must-revalidate");
 

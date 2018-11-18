@@ -7,4 +7,5 @@ DynamicImport-Package: *
 -plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
 -plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
 -plugin.sass: com.liferay.ant.bnd.sass.SassAnalyzerPlugin
--sources: true
+-sources: null
+Require-Capability: osgi.contract; filter:="(&(osgi.contract=JavaJAXRS)(version=2))"
