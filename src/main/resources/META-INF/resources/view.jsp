@@ -64,163 +64,168 @@
 		message="ui-request-processed-error" />
 	
 	<aui:form action="${actionUrl}" enctype="multipart/form-data" method="post" name="fm">
-	<table border="0">
-	<tr><td align="left" valign="top" style="width:*">
-		<aui:input type="hidden" name="cmd" value="noop" />
-		<aui:input type="hidden" name="newscriptname" value="" />
-		<aui:input type="hidden" name="editorheight" value="<%=editorheight %>" />
-		<aui:fieldset>
-			<aui:select name="language" onChange='pickCodeMirrorMode();'>
-	
-				<%
-				    for (String supportedLanguage : ScriptingUtil.getSupportedLanguages()) {
-				%>
-	
-				<aui:option
-					label="<%= TextFormatter.format(supportedLanguage, TextFormatter.J) %>"
-					selected="<%= supportedLanguage.equals(language) %>"
-					value="<%= supportedLanguage %>" />
-	
-				<%
-				    }
-				%>
-			</aui:select>
-	
-	    <style type="text/css">
-	      .CodeMirror {border: 1px solid black; font-size:13px; width: 100%}
-	    </style>
-	
-			<aui:input id="codearea" cssClass="lfr-textarea-container" name="script"
-				type="textarea" value="<%= script %>" />
+	<div class="card-horizontal main-content-card">
+		<div class="panel-group">
+			<div class="panel-body">
+				<table border="0">
+				<tr><td align="left" valign="top" style="width:*">
+					<aui:input type="hidden" name="cmd" value="noop" />
+					<aui:input type="hidden" name="newscriptname" value="" />
+					<aui:input type="hidden" name="editorheight" value="<%=editorheight %>" />
+					<aui:fieldset>
+						<aui:select name="language" onChange='pickCodeMirrorMode();'>
 				
-				<script type="text/javascript">
-				var editor = CodeMirror.fromTextArea(document.getElementById('<%=renderResponse.getNamespace() %>codearea'), {
-				    tabSize: 3,
-				    lineWrapping: true,
-				    lineNumbers: true
-				});
+							<%
+							    for (String supportedLanguage : ScriptingUtil.getSupportedLanguages()) {
+							%>
 				
-				function pickCodeMirrorMode() {
-				    var lang = document.<portlet:namespace />fm.<portlet:namespace />language.value;
-				    var sellang = 'clike';
-				    if(lang == 'javascript') sellang = 'javascript';
-				    if(lang == 'beanshell') sellang = 'clike';
-				    if(lang == 'groovy') sellang = 'groovy';
-				    if(lang == 'python') sellang = 'python';
-				    if(lang == 'ruby') sellang = 'ruby';
-					editor.setOption('mode', sellang);
-				}
-	
-				function pickCodeMirrorTheme() {
-				    var theme = document.<portlet:namespace />fm.<portlet:namespace />themesel.value;
-					editor.setOption('theme', theme);
-				}
+							<aui:option
+								label="<%= TextFormatter.format(supportedLanguage, TextFormatter.J) %>"
+								selected="<%= supportedLanguage.equals(language) %>"
+								value="<%= supportedLanguage %>" />
 				
+							<%
+							    }
+							%>
+						</aui:select>
 				
-				var editorheight = <%=editorheight %>;
-				editor.getScrollerElement().style.height=editorheight + 'px';
-				//editor.getScrollerElement().style.width='500px';
-				pickCodeMirrorMode();
+				    <style type="text/css">
+				      .CodeMirror {border: 1px solid black; font-size:13px; width: 100%}
+				    </style>
 				
-				function editorAutoformat() {
-					CodeMirror.commands["selectAll"](editor);
-					editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
-				}
+						<aui:input id="codearea" cssClass="lfr-textarea-container" name="script"
+							type="textarea" value="<%= script %>" />
 							
-				function editorExtendDown() {
-					editorheight = editorheight + 200;
-					editor.getScrollerElement().style.height=editorheight + 'px';
-					document.<portlet:namespace />fm.<portlet:namespace />editorheight.value = editorheight;
-				}
-				function editorExtendUp() {
-					editorheight = editorheight - 200;
-					if(editorheight < 200) editorheight = 200;
-					editor.getScrollerElement().style.height=editorheight + 'px';
-					document.<portlet:namespace />fm.<portlet:namespace />editorheight.value = editorheight;
-				}
-				</script>
+							<script type="text/javascript">
+							var editor = CodeMirror.fromTextArea(document.getElementById('<%=renderResponse.getNamespace() %>codearea'), {
+							    tabSize: 3,
+							    lineWrapping: true,
+							    lineNumbers: true
+							});
+							
+							function pickCodeMirrorMode() {
+							    var lang = document.<portlet:namespace />fm.<portlet:namespace />language.value;
+							    var sellang = 'clike';
+							    if(lang == 'javascript') sellang = 'javascript';
+							    if(lang == 'beanshell') sellang = 'clike';
+							    if(lang == 'groovy') sellang = 'groovy';
+							    if(lang == 'python') sellang = 'python';
+							    if(lang == 'ruby') sellang = 'ruby';
+								editor.setOption('mode', sellang);
+							}
 				
-				<a href="#" onclick="editorAutoformat(); return false;"><liferay-ui:message key="autoformat"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" onclick="editorExtendDown(); return false;"><liferay-ui:message key="extend-down"/></a>&nbsp;&nbsp;
-				<a href="#" onclick="editorExtendUp(); return false;"><liferay-ui:message key="extend-up"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+							function pickCodeMirrorTheme() {
+							    var theme = document.<portlet:namespace />fm.<portlet:namespace />themesel.value;
+								editor.setOption('theme', theme);
+							}
+							
+							
+							var editorheight = <%=editorheight %>;
+							editor.getScrollerElement().style.height=editorheight + 'px';
+							//editor.getScrollerElement().style.width='500px';
+							pickCodeMirrorMode();
+							
+							function editorAutoformat() {
+								CodeMirror.commands["selectAll"](editor);
+								editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
+							}
+										
+							function editorExtendDown() {
+								editorheight = editorheight + 200;
+								editor.getScrollerElement().style.height=editorheight + 'px';
+								document.<portlet:namespace />fm.<portlet:namespace />editorheight.value = editorheight;
+							}
+							function editorExtendUp() {
+								editorheight = editorheight - 200;
+								if(editorheight < 200) editorheight = 200;
+								editor.getScrollerElement().style.height=editorheight + 'px';
+								document.<portlet:namespace />fm.<portlet:namespace />editorheight.value = editorheight;
+							}
+							</script>
+							
+							<a href="#" onclick="editorAutoformat(); return false;"><liferay-ui:message key="autoformat"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href="#" onclick="editorExtendDown(); return false;"><liferay-ui:message key="extend-down"/></a>&nbsp;&nbsp;
+							<a href="#" onclick="editorExtendUp(); return false;"><liferay-ui:message key="extend-up"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+							
+							<liferay-ui:message key="editor-theme:"/> <select name="<portlet:namespace />themesel" onChange='pickCodeMirrorTheme();'>
+							<%
+							    for (String cmTheme : cmThemes) {
+							%>			
+							<option <% if(themesel.equals(cmTheme)) { %>selected<% } %>
+								value="<%=cmTheme %>" ><%=cmTheme %></option>
+							<%
+							    }
+							%>				
+							
+							</select>
+							<script type="text/javascript">
+							pickCodeMirrorTheme();
+							</script>
+							
+					</aui:fieldset>
 				
-				<liferay-ui:message key="editor-theme:"/> <select name="<portlet:namespace />themesel" onChange='pickCodeMirrorTheme();'>
+					<aui:button-row>
 				<%
-				    for (String cmTheme : cmThemes) {
-				%>			
-				<option <% if(themesel.equals(cmTheme)) { %>selected<% } %>
-					value="<%=cmTheme %>" ><%=cmTheme %></option>
-				<%
-				    }
-				%>				
+				String executeButtonScript = "return " + renderResponse.getNamespace() + "execute();";
+				String saveButtonScript = "return " + renderResponse.getNamespace() + "save();";
+				%>	
+					
+						<aui:button onClick="<%= executeButtonScript %>" type="submit" value="execute"/>
+						<aui:button onClick="<%= saveButtonScript %>" type="submit" value="save" primary="false"/>
+					</aui:button-row>
+				</td>
+				<td align="left" valign="top" width="35px">
+				&nbsp;&nbsp;&nbsp;
+				</td>	
+				<td align="left" valign="top">
 				
-				</select>
-				<script type="text/javascript">
-				pickCodeMirrorTheme();
-				</script>
+				<aui:fieldset>
+						<aui:select name="savedscript" size="10" label="saved-scripts">
 				
-		</aui:fieldset>
-	
-		<aui:button-row>
-	<%
-	String executeButtonScript = "return " + renderResponse.getNamespace() + "execute();";
-	String saveButtonScript = "return " + renderResponse.getNamespace() + "save();";
-	%>	
-		
-			<aui:button onClick="<%= executeButtonScript %>" type="submit" value="execute"/>
-			<aui:button onClick="<%= saveButtonScript %>" type="submit" value="save"/>
-		</aui:button-row>
-	</td>
-	<td align="left" valign="top" width="35px">
-	&nbsp;&nbsp;&nbsp;
-	</td>	
-	<td align="left" valign="top">
-	
-	<aui:fieldset>
-			<aui:select name="savedscript" size="10" label="saved-scripts">
-	
+							<%
+								if(savedscripts != null) {
+							    for (String savedscript : savedscripts) {
+							%>
+				
+							<aui:option
+								selected="false"
+								value="<%= savedscript %>" ><%= savedscript %></aui:option>
+				
+							<%
+							    }
+								}
+							%>
+						</aui:select>
+					</aui:fieldset>
+				
 				<%
-					if(savedscripts != null) {
-				    for (String savedscript : savedscripts) {
-				%>
-	
-				<aui:option
-					selected="false"
-					value="<%= savedscript %>" ><%= savedscript %></aui:option>
-	
-				<%
-				    }
-					}
-				%>
-			</aui:select>
-		</aui:fieldset>
-	
-	<%
-	String saveintoButtonScript = "return " + renderResponse.getNamespace() + "saveinto();";
-	String loadfromButtonScript = "return " + renderResponse.getNamespace() + "loadfrom();";
-	String deleteButtonScript = "return " + renderResponse.getNamespace() + "delete();";
-	String importButtonScript = "return " + renderResponse.getNamespace() + "import();";
-	%>	
-	
-		<aui:button-row>
-			<aui:button onClick="<%= loadfromButtonScript %>" type="submit" value="load-from"/>
-			<aui:button onClick="<%= saveintoButtonScript %>" type="submit" value="save-into"/>
-			<aui:button onClick="<%= deleteButtonScript %>" type="submit" value="delete"/>
-		</aui:button-row>
-		<BR/>
-		<b><liferay-ui:message key="export/import"/></b><BR/>
-		<aui:button-row>
-			<aui:button onClick="self.location = '${resourceUrl}';" value="export-all-as-zip"  />
-		</aui:button-row>
-		<aui:button-row>
-			<aui:input name="importfile" type="file" style="width: auto;" label="import-zip-file">
-			</aui:input>		
-			<aui:button onClick="<%= importButtonScript %>" type="submit" value="import-zip"  />
-		</aui:button-row>
-	</td>	
-	</tr>
-	</table>
-	
+				String saveintoButtonScript = "return " + renderResponse.getNamespace() + "saveinto();";
+				String loadfromButtonScript = "return " + renderResponse.getNamespace() + "loadfrom();";
+				String deleteButtonScript = "return " + renderResponse.getNamespace() + "delete();";
+				String importButtonScript = "return " + renderResponse.getNamespace() + "import();";
+				%>	
+				
+					<aui:button-row>
+						<aui:button onClick="<%= loadfromButtonScript %>" type="submit" value="load-from" primary="false"/>
+						<aui:button onClick="<%= saveintoButtonScript %>" type="submit" value="save-into" primary="false"/>
+						<aui:button onClick="<%= deleteButtonScript %>" type="submit" value="delete" primary="false"/>
+					</aui:button-row>
+					<BR/>
+					<b><liferay-ui:message key="export/import"/></b><BR/>
+					<aui:button-row>
+						<aui:button onClick="self.location = '${resourceUrl}';" value="export-all-as-zip"  />
+					</aui:button-row>
+					<aui:button-row>
+						<aui:input name="importfile" type="file" style="width: auto;" label="import-zip-file">
+						</aui:input>		
+						<aui:button onClick="<%= importButtonScript %>" type="submit" value="import-zip" primary="false" />
+					</aui:button-row>
+				</td>	
+				</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 			<b><liferay-ui:message key="output:"/></b>
 	
 			<pre><c:out value="<%=scriptOutput%>" /></pre>
