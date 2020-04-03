@@ -17,6 +17,23 @@ package au.com.permeance.utility.scriptinghelper.portlets;
 
 import static com.liferay.portal.kernel.model.PortletCategoryConstants.NAME_HIDDEN;
 
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.scripting.ScriptingHelperUtil;
+import com.liferay.portal.kernel.scripting.ScriptingUtil;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.UnsyncPrintWriterPool;
+import com.liferay.portal.kernel.util.WebKeys;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,23 +66,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.portlet.PortletFileUpload;
 import org.osgi.service.component.annotations.Component;
-
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
-import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.scripting.ScriptingHelperUtil;
-import com.liferay.portal.kernel.scripting.ScriptingUtil;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
-import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.UnsyncPrintWriterPool;
-import com.liferay.portal.kernel.util.WebKeys;
 
 @Component(
 		immediate = true,
@@ -261,9 +261,8 @@ public class ScriptingHelperPortlet extends MVCPortlet {
 				UnsyncPrintWriter unsyncPrintWriter = UnsyncPrintWriterPool.borrow(unsyncByteArrayOutputStream);
 
 				portletObjects.put("out", unsyncPrintWriter);
-
 				_log.info("Executing script");
-				ScriptingUtil.exec(null, portletObjects, language, script);
+				ScriptingUtil.eval(null, portletObjects, null, language, script);
 				unsyncPrintWriter.flush();
 				actionResponse.setRenderParameter("script_output", unsyncByteArrayOutputStream.toString());
 			} else if ("save".equals(cmd)) {
