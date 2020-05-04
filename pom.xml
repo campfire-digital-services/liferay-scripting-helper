@@ -171,7 +171,7 @@
 					<execution>
 						<id>default-bnd-process</id>
 						<goals>
-							<goal>bnd-process</goal>!cp
+							<goal>bnd-process</goal>
 						</goals>
 					</execution>
 				</executions>
