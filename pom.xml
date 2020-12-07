@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>au.com.permeance.liferay</groupId>
 	<artifactId>liferay-scripting-helper-portlet</artifactId>
-	<version>7.2.0.2-SNAPSHOT</version>
+	<version>7.3.0.0-SNAPSHOT</version>
 	<developers>
 		<developer>
 			<id>chun-ho</id>
@@ -57,21 +57,21 @@
 			<url>https://repo.permeance.com.au/repository/internal/</url>
 		</repository>
 	</distributionManagement>
-	<properties>
+<properties>
 		<commons-fileupload.version>1.3.3</commons-fileupload.version>
-		<commons-io.version>2.6</commons-io.version>
-		<commons-lang.version>2.6</commons-lang.version>
 		<javax.portlet-api.version>3.0.1</javax.portlet-api.version>
 		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
 		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
 		<jsp.api.version>2.2</jsp.api.version>
 		<jstl.version>1.2</jstl.version>
-		<liferay.application.list.api.version>4.0.0</liferay.application.list.api.version>
-		<liferay.petra.string.version>2.0.0</liferay.petra.string.version>
-		<liferay.portal.kernel.version>4.0.0</liferay.portal.kernel.version>
-		<liferay.util.bridges.version>6.0.0</liferay.util.bridges.version>
-		<liferay.util.java.version>4.0.0</liferay.util.java.version>
-		<liferay.util.taglib.version>4.0.0</liferay.util.taglib.version>
+		<liferay.application.list.api.version>6.0.0</liferay.application.list.api.version>
+		<liferay.petra.string.version>4.0.0</liferay.petra.string.version>
+		<liferay.portal.kernel.version>9.0.0</liferay.portal.kernel.version>
+		<liferay.util.bridges.version>7.0.0</liferay.util.bridges.version>
+		<liferay.util.java.version>5.0.0</liferay.util.java.version>
+		<liferay.util.taglib.version>5.0.0</liferay.util.taglib.version>
+		<commons-io.version>2.6</commons-io.version>
+		<commons-lang.version>2.6</commons-lang.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
@@ -145,6 +145,7 @@
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
@@ -153,7 +154,9 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
 				<configuration>
 					<excludes>
 						<exclude>**/META-INF/resources/**/.sass-cache/</exclude>
@@ -166,7 +169,7 @@
 			<plugin>
 				<groupId>biz.aQute.bnd</groupId>
 				<artifactId>bnd-maven-plugin</artifactId>
-				<version>5.0.1</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<id>default-bnd-process</id>
@@ -179,12 +182,12 @@
 					<dependency>
 						<groupId>biz.aQute.bnd</groupId>
 						<artifactId>biz.aQute.bndlib</artifactId>
-						<version>5.0.1</version>
+						<version>3.5.0</version>
 					</dependency>
 					<dependency>
 						<groupId>com.liferay</groupId>
 						<artifactId>com.liferay.ant.bnd</artifactId>
-						<version>3.2.3</version>
+						<version>2.0.52</version>
 					</dependency>
 				</dependencies>
 			</plugin>
