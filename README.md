@@ -15,11 +15,11 @@ The *Scripting Helper* is an improved interface for administrators to run Groovy
 
 Administrators will see a new *Scripting Helper* option in the Control Panel menu of Liferay DXP. Other users can also be assigned permissions to see the *Scripting Helper*.
 
-![Scripting Helper](/docs/images/liferay-scripting-helper-7.3-menu.png "Scripting Helper")
+![Scripting Helper](/docs/images/scripting-helper-7.3-menu.png "Scripting Helper")
 
 The *Scripting Helper* allows you to run a Groovy script, see the output or errors. You can then save multiple scripts and export the saved scripts as a zip file to import into another Liferay installation.
 
-![Scripting Helper](/docs/images/liferay-scripting-helper-7.3-portlet.png "Scripting Helper")
+![Scripting Helper](/docs/images/scripting-helper-7.3-portlet.png "Scripting Helper")
 
 The [codemirror](http://codemirror.net) library is utilised as the editor and supports a range of languages and editor themes.
 
