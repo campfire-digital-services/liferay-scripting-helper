@@ -1,81 +1,62 @@
-# Liferay Scripting Helper Portlet
+# Liferay Scripting Helper
 
-*liferay-scripting-helper-portlet*
+The *Scripting Helper* is an improved interface for administrators to run Groovy scripts in Liferay DXP. It features an editor, error trace reporting and an ability to save/load scripts and import/export them as zip files.
 
-Liferay Scripting Helper is an improved interface to scripting in Liferay. It features a codemirror editor, error trace reporting and an ability to save/load scripts and import/export them as zip files.
+## Supported products
 
-## Supported Products
+* Liferay DXP 7.3
+* Liferay DXP 7.2
+* Liferay DXP 7.1
+* Liferay DXP 7.0
+* Liferay Portal 6.2
+* Liferay Portal 6.1
 
-* Liferay Portal 6.1 CE GA2, GA3 (6.1.1+)
-* Liferay Portal 6.1 EE GA2, GA3 (6.1.20+)
-* Liferay Portal 6.2 CE GA1 (6.2.0+)
-* Liferay Portal 6.2 EE GA1 (6.2.10+)
+## Usage
+
+Administrators will see a new *Scripting Helper* option in the Control Panel menu of Liferay DXP. Other users can also be assigned permissions to see the *Scripting Helper*.
+
+![Scripting Helper](/docs/images/liferay-scripting-helper-7.3-menu.png "Scripting Helper")
+
+The *Scripting Helper* allows you to run a Groovy script, see the output or errors. You can then save multiple scripts and export the saved scripts as a zip file to import into another Liferay installation.
+
+![Scripting Helper](/docs/images/liferay-scripting-helper-7.3-portlet.png "Scripting Helper")
+
+The [codemirror](http://codemirror.net) library is utilised as the editor and supports a range of languages and editor themes.
 
 
 ## Downloads
 
-The latest releases are available from [SourceForge](http://sourceforge.net/projects/permeance-apps/files/liferay-scripting-helper/ "Liferay Scripting Helper").
-
-It is also available from the [Liferay Marketplace](http://www.liferay.com/marketplace/-/mp/application/25618082 "Liferay Scripting Helper").
-
-
-## Usage
-
-Administrators will see a "Scripting Helper" portlet in the Server area of the Control Panel in 6.1.
-The portlet appears in the Apps section of the Control Panel in 6.2.
-Other users can also be assigned permissions to see the Scripting Helper Portlet.
-
-![Scripting Helper Portlet](/docs/images/scripting-helper-1.png "Scripting Helper Portlet")
-
-![Scripting Helper Portlet](/docs/images/scripting-helper-2.png "Scripting Helper Portlet")
-
-The user can run the script, see any script output or script error traces, save the script, save/load a script, export the saved scripts as a zip file, and import it into another Liferay installation.
-
-The [codemirror](http://codemirror.net) library is utilized as an editor, and supports a range of languages and editor themes.
-
-
-
-## Building
-
-Step 1. Checkout source from GitHub project
-
-    % git  clone  https://github.com/permeance/liferay-scripting-helper
-
-Step 2. Build and package
-
-    % mvn  -U  clean  package
-
-This will build "liferay-scripting-helper-portlet-XXX.war" in the targets tolder.
-
-NOTE: You will require JDK 1.6+ and Maven 3.
+Download the *Scripting Helper* from the [Liferay Marketplace](https://www.liferay.com/marketplace/-/mp/application/25618082 "Liferay Scripting Helper").
 
 
 ## Installation
 
-### Liferay Portal + Apache Tomcat Bundle
-
-eg.
-
-Deploy "liferay-scripting-helper-portlet-LPX.X-X.X.X.X.war" to "LIFERAY_HOME/deploy" folder.
+Copy the file `Scripting Helper.lpkg` package to the `deploy` folder of your installation.
 
 
-## Plugin Security
+## Building
 
-This app will be released as a Marketplace application without Plugin Security enabled. 
+Step 1. Check out the source from GitHub:
 
-While we have provided a list of plugin security entries to run the basic scripting helper, the administrator would need to add additional entries for any script functions/services that might be called. As such, the scripting helper is not really helpful unless it can be installed without plugin security.
+    % git clone https://github.com/campfire-digital-services/liferay-scripting-helper.git
 
+Step 2. Build and package the module:
 
-## Support for Liferay 6.1 GA 1 (6.1.0, 6.1.10)
+    % mvn -U clean package
 
-The source code supports Liferay 6.1 GA1 but needs to be recompiled with those libraries, due to a method signature change in ScriptingUtil. Check out the 6.1.x source from the GitHub project, and in the pom.xml, change liferay.version to 6.1.0, and rebuild the project. The resultant WAR can be deployed to a Liferay 6.1 GA1 instance.
+This will create a package called `liferay-scripting-helper-portlet.jar` in the `target` tolder.
 
+*Note: You will require JDK 8+ and Maven 3.6+.*
 
-## License
+## Licence
 
 This application is released under the GNU Public License version 3.0 (GPL). The codemirror library is also included in the package and comes under a MIT-style license. 
 
 
-## Project Team
+## Project team
 
-* Chun Ho - chun.ho@permeance.com.au
+* Chun Ho - chun.ho@campfire.com.au
+* Terry Mueller - terry.mueller@campfire.com.au
+* Flavius Daca - flavius.daca@campfire.com.au
+
+
