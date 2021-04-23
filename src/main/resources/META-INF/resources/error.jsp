@@ -1,8 +1,9 @@
 <%-- 
 /**
- * Copyright (C) 2017 Permeance Technologies
+ * Copyright (C) 2013-2021 Campfire Digital Services
+ * (formerly Permeance Technologies)
  * 
- * This file is part of Scripting Helper.
+ * This file is part of the Liferay Scripting Helper.
  * 
  * Scripting Helper is free software: you can redistribute it and/or modify it under the terms of
  * the GNU General Public License as published by the Free Software Foundation, either version 3 of
