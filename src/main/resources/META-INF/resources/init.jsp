@@ -1,6 +1,7 @@
 <%-- 
 /**
- * Copyright (C) 2017 Permeance Technologies
+ * Copyright (C) 2013-2021 Campfire Digital Services
+ * (formerly Permeance Technologies)
  * 
  * This file is part of Scripting Helper.
  * 
