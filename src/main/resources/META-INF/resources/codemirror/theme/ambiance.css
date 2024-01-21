@@ -1,6 +1,6 @@
 /* ambiance theme for code-mirror */
 
-/* Color scheme */
+/* ---------- Color scheme ---------- */
 
 .cm-s-ambiance .cm-keyword { color: #cda869; }
 .cm-s-ambiance .cm-atom { color: #CF7EA9; }
@@ -37,7 +37,7 @@
   background: rgba(255, 255, 255, 0.10);
 }
 
-/* Editor styling */
+/* ---------- Editor styling ---------- */
 
 .cm-s-ambiance {
   line-height: 1.40em;

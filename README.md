@@ -23,16 +23,13 @@ The *Scripting Helper* allows you to run a Groovy script, see the output or erro
 
 The [codemirror](http://codemirror.net) library is utilised as the editor and supports a range of languages and editor themes.
 
-
 ## Downloads
 
 Download the *Scripting Helper* from the [Liferay Marketplace](https://www.liferay.com/marketplace/-/mp/application/25618082 "Liferay Scripting Helper").
 
-
 ## Installation
 
 Copy the file `Scripting Helper.lpkg` package to the `deploy` folder of your installation.
-
 
 ## Building
 
@@ -50,13 +47,10 @@ This will create a package called `liferay-scripting-helper-portlet.jar` in the 
 
 ## Licence
 
-This application is released under the GNU Public License version 3.0 (GPL). The codemirror library is also included in the package and comes under a MIT-style license. 
-
+This application is released under the GNU Public License version 3.0 (GPL). The codemirror library is also included in the package and comes under a MIT-style license.
 
 ## Project team
 
 * Chun Ho - chun.ho@campfire.com.au
 * Terry Mueller - terry.mueller@campfire.com.au
 * Flavius Daca - flavius.daca@campfire.com.au
-
-

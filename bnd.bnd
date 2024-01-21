@@ -2,10 +2,14 @@ Bundle-Name: Liferay Scripting Helper
 Bundle-SymbolicName: au.com.permeance.liferay.scripting
 Bundle-Version: ${project.version}
 DynamicImport-Package: *
+Require-Capability:\
+	osgi.contract;\
+		filter:="(&(osgi.contract=JavaJAXRS)(version=2))"
 -contract: JavaPortlet
--jsp: *.jsp,*.jspf
+-jsp:\
+	*.jsp,\
+	*.jspf
 -plugin.bundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin
 -plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
 -plugin.sass: com.liferay.ant.bnd.sass.SassAnalyzerPlugin
 -sources: null
-Require-Capability: osgi.contract; filter:="(&(osgi.contract=JavaJAXRS)(version=2))"

@@ -2,9 +2,9 @@
   line-height: 1em;
   font-family: monospace;
 
-  /* Necessary so the scrollbar can be absolutely positioned within the wrapper on Lion. */
+  /* ---------- Necessary so the scrollbar can be absolutely positioned within the wrapper on lion. ---------- */
   position: relative;
-  /* This prevents unwanted scrollbars from showing up on the body and wrapper in IE. */
+  /* ---------- This prevents unwanted scrollbars from showing up on the body and wrapper in IE. ---------- */
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
   outline: none;
 }
 
-/* Vertical scrollbar */
+/* ---------- Vertical scrollbar ---------- */
 .CodeMirror-scrollbar {
   position: absolute;
   right: 0; top: 0;
@@ -128,7 +128,7 @@ div.CodeMirror-selected { background: #d9d9d9; }
   background: rgba(255, 255, 0, .4);
 }
 
-/* Default theme */
+/* ---------- Default theme ---------- */
 
 .cm-s-default span.cm-keyword {color: #708;}
 .cm-s-default span.cm-atom {color: #219;}
@@ -166,7 +166,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 
 @media print {
 
-  /* Hide the cursor when printing */
+  /* ---------- Hide the cursor when printing ---------- */
   .CodeMirror pre.CodeMirror-cursor {
     visibility: hidden;
   }
