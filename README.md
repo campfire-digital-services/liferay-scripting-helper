@@ -1,9 +1,11 @@
 # Liferay Scripting Helper
 
-The *Scripting Helper* is an improved interface for administrators to run Groovy scripts in Liferay DXP. It features an editor, error trace reporting and an ability to save/load scripts and import/export them as zip files.
+The Scripting Helper is an improved interface for administrators to run Groovy scripts in Liferay DXP. It features an editor, error trace reporting and an ability to save/load scripts and import/export them as zip files. Since 7.4 it's possible to launch scripts in backgroundtask and Real-time log tracking via WebSocket.
+
 
 ## Supported products
 
+* Liferay DXP 7.4 (tested on U92)
 * Liferay DXP 7.3
 * Liferay DXP 7.2
 * Liferay DXP 7.1
