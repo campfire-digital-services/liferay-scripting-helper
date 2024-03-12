@@ -35,9 +35,9 @@ import java.util.zip.ZipInputStream;
 	},
 	service = MVCActionCommand.class
 )
-public class ImportZipGroovyMVCActionCommande extends BaseMVCActionCommand {
+public class ImportZipGroovyMVCActionCommand extends BaseMVCActionCommand {
 
-	Log _log = LogFactoryUtil.getLog(ImportZipGroovyMVCActionCommande.class);
+	Log _log = LogFactoryUtil.getLog(ImportZipGroovyMVCActionCommand.class);
 
 	public static String getDefaultLanguage() {
 		if (defaultLanguage == null) {

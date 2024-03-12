@@ -1,10 +1,12 @@
 <%@ include file="init.jsp" %>
 <%@ page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.scripting.ScriptingUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.portal.kernel.util.TextFormatter" %>
+page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.TextFormatter" %>
 
 <portlet:actionURL name="execute" var="actionUrl" />
 <portlet:resourceURL var="resourceUrl" />
@@ -13,6 +15,9 @@ page import="com.liferay.portal.kernel.util.TextFormatter" %>
 
 <liferay-portlet:actionURL copyCurrentRenderParameters="<%= true %>" name="/scripting/execute" var="executeURL" />
 <liferay-portlet:actionURL copyCurrentRenderParameters="<%= true %>" name="/scripting/execute/background" var="executeBGURL" />
+<portlet:renderURL var="scriptShcedulerURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+	<portlet:param name="mvcPath" value="/modalShcedule.jsp" />
+</portlet:renderURL>
 
 <%
 String language = ParamUtil.getString(renderRequest, "language", "groovy");
@@ -56,6 +61,7 @@ String editorheight = GetterUtil.getString(renderRequest.getAttribute("editorhei
 						navigationItem.setHref(renderResponse.createRenderURL(), "mvcPath", "/backgroundtasks.jsp");
 						navigationItem.setLabel(LanguageUtil.get(httpServletRequest, "backgroundtasks"));
 					});
+
 			}
 		}
 	%>'
@@ -175,11 +181,13 @@ String editorheight = GetterUtil.getString(renderRequest.getAttribute("editorhei
 						<%
 						String executeButtonScript = "return " + renderResponse.getNamespace() + "execute();";
 						String executeBGButtonScript = "return " + renderResponse.getNamespace() + "executeBG();";
+						String scheduleButtonScript = "return " + renderResponse.getNamespace() + "openScheduleModal();";
 						String saveButtonScript = "return " + renderResponse.getNamespace() + "save();";
 						%>
 
 						<aui:button onClick="<%= executeButtonScript %>" type="submit" value="execute" />
 						<aui:button onClick="<%= executeBGButtonScript %>" primary="false" type="submit" value="background" />
+						<aui:button onClick="<%= scheduleButtonScript %>" primary="false" type="submit" value="schedule" />
 						<aui:button onClick="<%= saveButtonScript %>" primary="false" type="submit" value="save" />
 					</aui:button-row>
 
@@ -276,6 +284,27 @@ String editorheight = GetterUtil.getString(renderRequest.getAttribute("editorhei
 		}else {
 			return false;
 		}
+	}
+
+	function <portlet:namespace />openScheduleModal() {
+		event.preventDefault();
+
+		Liferay.Util.openWindow({
+			dialog: {
+				destroyOnHide: true,
+				height: 430,
+				resizable: false,
+				width: 896
+			},
+			dialogIframe: {
+				bodyCssClass: 'dialog-with-footer task-dialog',
+			},
+			id: 'scriptShcedulerDialog',
+			title: '<liferay-ui:message key="script scheduler" />',
+
+
+			uri: '<%= HtmlUtil.escapeJS(scriptShcedulerURL) %>',
+		});
 	}
 
 	function <portlet:namespace />save() {

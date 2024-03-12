@@ -18,7 +18,6 @@ import org.osgi.service.component.annotations.Reference;
 
 import java.io.PrintStream;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

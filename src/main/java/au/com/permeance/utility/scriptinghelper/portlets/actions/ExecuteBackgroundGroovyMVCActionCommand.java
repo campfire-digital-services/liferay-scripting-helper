@@ -5,7 +5,6 @@ import au.com.permeance.utility.scriptinghelper.portlets.ScriptingHelperPortlet;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskManager;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.portlet.url.builder.PortletURLBuilder;
@@ -33,11 +32,11 @@ import java.util.Map;
 	},
 	service = MVCActionCommand.class
 )
-public class ExecuteBackgroundGroovyMVCActionCommande
+public class ExecuteBackgroundGroovyMVCActionCommand
 	extends BaseMVCActionCommand {
 
 	Log _log = LogFactoryUtil.getLog(
-		ExecuteBackgroundGroovyMVCActionCommande.class);
+		ExecuteBackgroundGroovyMVCActionCommand.class);
 
 	public static String getDefaultLanguage() {
 		if (defaultLanguage == null) {

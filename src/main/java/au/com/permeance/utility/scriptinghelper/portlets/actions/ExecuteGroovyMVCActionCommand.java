@@ -26,9 +26,9 @@ import java.util.Map;
 	},
 	service = MVCActionCommand.class
 )
-public class ExecuteGroovyMVCActionCommande extends BaseMVCActionCommand {
+public class ExecuteGroovyMVCActionCommand extends BaseMVCActionCommand {
 
-	Log _log = LogFactoryUtil.getLog(ExecuteGroovyMVCActionCommande.class);
+	Log _log = LogFactoryUtil.getLog(ExecuteGroovyMVCActionCommand.class);
 
 	@Override
 	protected void doProcessAction(
