@@ -30,7 +30,7 @@ Calendar cal = CalendarFactoryUtil.getCalendar(timeZone, locale);
     <div class="form-group-autofit">
 
         <div class="form-group-item">
-            <label><liferay-ui:message key="Start Datee" /></label>
+            <label><liferay-ui:message key="Start Date" /></label>
 
             <liferay-ui:input-date
 
